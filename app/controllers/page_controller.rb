@@ -40,23 +40,60 @@ class PageController < ApplicationController
   def user_params
     params.permit(:name, :user_id, :password, :email)
   end
-  def register_siji
-    @sijis = Score.new(siji_params)
 
-    if @sijis.save
-      render "landing"
+  def register_siji
+    @scores = Four.new(siji_params)
+    # @scoes.test_class = rand(30)
+    @scores.zuo_hao = rand(30)
+    # @scores.test_number = @sijis.user_id+@sijis.zuo_hao
+    if @scores.save
+      @scores = Four.find_by_user_id(params[:user_id])
+      render "show"
     else
-      render 'siji'
+      render 'student'
     end
   end
 
   def siji_params
-    params.permit(:name, :user_id)
+    params.permit(:name, :user_id, :ban_ji, :card)
   end
+
+  def siji
+
+  end
+
+  def register_liuji
+    @scores = Six.new(siji_params)
+    # @scoes.test_class = rand(30)
+    @scores.zuo_hao = rand(30)
+    # @scores.test_number = @sijis.user_id+@sijis.zuo_hao
+
+    if @scores.save
+      @scores = Six.find_by_user_id(params[:user_id])
+      render "show"
+    else
+      render 'student'
+    end
+  end
+
   def manager
 
   end
 
+  def finding
+    @scores = Four.where('user_id = ?', params[:user_id])
+    render 'manager'
+  end
+
+  def siji_all
+    @scores = Four.all
+    render 'manager'
+  end
+
+  def liuji_all
+    @scores = Six.all
+    render 'manager'
+  end
 
   def student
 

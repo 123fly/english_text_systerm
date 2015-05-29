@@ -3,3 +3,53 @@
     <div class="return">
       <button onclick="returnLandingPage()">注销</button>
     </div>
+     <div align="center" class="chazhao">
+       <%= form_tag("/finding") do %>
+
+             <%= text_field_tag(:user_id) %>
+             <%= submit_tag("查找") %>
+
+       <% end %>
+
+     </div>
+    <div>
+    <div class="history">
+      <%= form_tag('/siji_all') do %>
+          <%= submit_tag('四级考试报名表') %>
+      <% end %>
+    </div>
+      <div class="history">
+        <%= form_tag('/liuji_all') do %>
+            <%= submit_tag('六级考试报名表') %>
+        <% end %>
+      </div>
+    </div>
+    <br>
+    <div>
+      <% if @scores != nil %>
+          <table>
+            <tr>
+              <th>学号</th>
+              <th>姓名</th>
+              <th>班级</th>
+              <th>身份证号</th>
+              <th>考场号</th>
+              <th>考号</th>
+              <th>座号</th>
+              <th>照片</th>
+            </tr>
+            <% @scores.each do |score| %>
+                <tr>
+                  <td><%= score.user_id%></td>
+                  <td><%= score.name %></td>
+                  <td><%= score.ban_ji %></td>
+                  <td><%= score.card %></td>
+                  <td><%= score.test_class %></td>
+                  <td><%= score.test_number %></td>
+                  <td><%= score.zuo_hao %></td>
+                  <td><%=  %></td>
+                </tr>
+            <% end %>
+          </table>
+      <% end %>
+    </div>
