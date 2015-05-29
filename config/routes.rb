@@ -17,11 +17,13 @@ Rails.application.routes.draw do
   post '/save' => 'page#save'
   post '/search' => 'page#search'
   post '/history' => 'page#history'
-  get '/edit'=>'page#edit'
   post '/update'=>'page#update'
   get '/history' => 'page#history'
   get '/manager_search'=> 'page#manager_search'
   get '/ajax_number' => 'page#ajax_number'
+  get '/siji'=>'page#siji'
+  get '/liuji'=>'page#liuji'
+  post '/register_siji'=>'page#register_siji'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

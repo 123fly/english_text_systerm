@@ -1,45 +1,5 @@
-<div>
-  <div class="title">
+
+
     <div class="return">
       <button onclick="returnLandingPage()">注销</button>
     </div>
-    <div>
-      <button onclick="openManagerPage()">评分</button>
-      <button onclick="openSearchPage()">查询</button>
-    </div>
-  </div>
-  <div id="score">
-    <%= form_tag("/save") do %>
-        姓名：<%= select_tag(:name, options_from_collection_for_select(User.all, :name, :name), :onclick=>'showNumber(this.value)')  %>
-        <div id="number"></div>
-        选择评定第<%= text_field_tag(:number) %>周
-        <br>
-        沟通能力:<%= radio_button_tag 'ability_to_communicate', 'A' %> A
-        <%= radio_button_tag 'ability_to_communicate', 'B' %> B
-        <%= radio_button_tag 'ability_to_communicate', 'C' %> C
-        <%= radio_button_tag 'ability_to_communicate', 'D' %> D
-        <br>
-        职业素养:<%= radio_button_tag 'professional_quality', 'A' %> A
-        <%= radio_button_tag 'professional_quality', 'B' %> B
-        <%= radio_button_tag 'professional_quality', 'C' %> C
-        <%= radio_button_tag 'professional_quality', 'D' %> D
-        <br>
-        学习能力:<%= radio_button_tag 'ability_to_learn', 'A' %> A
-        <%= radio_button_tag 'ability_to_learn', 'B' %> B
-        <%= radio_button_tag 'ability_to_learn', 'C' %> C
-        <%= radio_button_tag 'ability_to_learn', 'D' %> D
-        <br>
-        演讲能力:<%= radio_button_tag 'speech_ability', 'A' %> A
-        <%= radio_button_tag 'speech_ability', 'B' %> B
-        <%= radio_button_tag 'speech_ability', 'C' %> C
-        <%= radio_button_tag 'speech_ability', 'D' %> D
-        <br>
-        综合能力:<%= radio_button_tag 'comprehensive_ability', 'A' %> A
-        <%= radio_button_tag 'comprehensive_ability', 'B' %> B
-        <%= radio_button_tag 'comprehensive_ability', 'C' %> C
-        <%= radio_button_tag 'comprehensive_ability', 'D' %> D
-        <br>
-        <%= submit_tag("保存") %>
-    <% end %>
-  </div>
-</div>

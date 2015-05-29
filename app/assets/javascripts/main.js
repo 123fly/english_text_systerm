@@ -17,6 +17,12 @@ function openSearchPage(){
 function returnLandingPage(){
     window.location.href='landing.html'
 }
+function opensiji(){
+    window.location.href='siji.html'
+}
+function openliuji(){
+    window.location.href='liuji.html'
+}
 function showNumber(str)
 {
     var xmlhttp;

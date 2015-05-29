@@ -2,39 +2,10 @@
   <button onclick="returnLandingPage()">注销</button>
 </div>
 <div align="center">
-
-  <%= form_tag("/student_finding") do %>
-
-      <dl>
-
-        <%= text_field_tag(:name) %>
-        <%= submit_tag("查找") %>
-      </dl>
-  <% end %>
-  <% if @scores != nil %>
-      <table>
-        <tr>
-          <th>帐号</th>
-          <th>姓名</th>
-          <th>沟通能力</th>
-          <th>职业素养</th>
-          <th>学习能力</th>
-          <th>演讲能力</th>
-          <th>综合能力</th>
-          <th>周</th>
-        </tr>
-        <% @scores.each do |score| %>
-            <tr>
-              <td><%= User.find_by_name(score.name).user_id%></td>
-              <td><%= score.name %></td>
-              <td><%= score.ability_to_communicate %></td>
-              <td><%= score.professional_quality %></td>
-              <td><%= score.ability_to_learn %></td>
-              <td><%= score.speech_ability %></td>
-              <td><%= score.comprehensive_ability %></td>
-              <td>第<%= score.number %>周评分</td>
-            </tr>
-        <% end %>
-      </table>
-  <% end %>
+<div>
+  <button onclick="opensiji()">英语四级考试报名</button>
+</div>
+ <div>
+   <button onclick="openliuji()">英语六级考试报名</button>
+ </div>
 </div>

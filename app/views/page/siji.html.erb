@@ -1,0 +1,25 @@
+<div id="color">
+  <div align="center">
+    <h3>欢迎注册</h3>
+    <%= form_tag("/register_siji") do %>
+
+        <%= label_tag(:name, "姓名:") %>
+        <%= text_field_tag(:name) %>
+
+        <br>
+        <%= label_tag("学号:") %>
+        <%= text_field_tag(:user_id) %>
+
+        <br>
+        <%= label_tag("身份证号:") %>
+        <%= text_field_tag(:shenfen) %>
+
+        <br>
+        <%= label_tag("班级:") %>
+        <%= text_field_tag(:banji) %>
+
+        <br>
+        <%= submit_tag("报名") %>
+    <% end %>
+  </div>
+</div>
