@@ -1,55 +1,49 @@
-
-
-    <div class="return">
-      <button onclick="returnLandingPage()">注销</button>
+<div class="return">
+  <button onclick="returnLandingPage()">注销</button>
+</div>
+<div align="center" class="chazhao">
+  <%= form_tag("/finding") do %>
+    <div id="manager">
+      <%= text_field_tag(:user_id) %>
+      <%= submit_tag("查找") %>
     </div>
-     <div align="center" class="chazhao">
-       <%= form_tag("/finding") do %>
+  <% end %>
 
-             <%= text_field_tag(:user_id) %>
-             <%= submit_tag("查找") %>
+</div>
+<div>
+  <div class="history">
+    <%= form_tag('/siji_all') do %>
+        <%= submit_tag('四级考试报名表') %>
+    <% end %>
+  </div>
+  <div class="history">
+    <%= form_tag('/liuji_all') do %>
+        <%= submit_tag('六级考试报名表') %>
+    <% end %>
+  </div>
+</div>
+<br>
+<div>
+  <% if @scores != nil %>
+      <table>
 
-       <% end %>
-
-     </div>
-    <div>
-    <div class="history">
-      <%= form_tag('/siji_all') do %>
-          <%= submit_tag('四级考试报名表') %>
-      <% end %>
-    </div>
-      <div class="history">
-        <%= form_tag('/liuji_all') do %>
-            <%= submit_tag('六级考试报名表') %>
-        <% end %>
-      </div>
-    </div>
-    <br>
-    <div>
-      <% if @scores != nil %>
-          <table>
+        <% @scores.each do |score| %>
             <tr>
-              <th>学号</th>
-              <th>姓名</th>
-              <th>班级</th>
-              <th>身份证号</th>
-              <th>考场号</th>
-              <th>考号</th>
-              <th>座号</th>
-              <th>照片</th>
+              <td>学号：<%= score.user_id %></td>
+              <td>姓名：<%= score.name %></td>
+              <td>班级：<%= score.ban_ji %></td>
+              <td>身份证号：<%= score.card %></td>
+              <td>考场：<%= score.test_class %></td>
+              <td>追考证号：<%= score.test_number %></td>
+              <td>座号：<%= score.zuo_hao %></td>
+              <td>照片<%= %></td>
+              <td><%= link_to '修改', edit_path(score) %></td>
+              <td><%=link_to '删除',page_remove_user_path(score.id)  %></td>
             </tr>
-            <% @scores.each do |score| %>
-                <tr>
-                  <td><%= score.user_id%></td>
-                  <td><%= score.name %></td>
-                  <td><%= score.ban_ji %></td>
-                  <td><%= score.card %></td>
-                  <td><%= score.test_class %></td>
-                  <td><%= score.test_number %></td>
-                  <td><%= score.zuo_hao %></td>
-                  <td><%=  %></td>
-                </tr>
-            <% end %>
-          </table>
-      <% end %>
-    </div>
+        <% end %>
+      </table>
+      <div align="center">
+        <%= will_paginate @scores, :previous_label => '上一页', :next_label => '下一页' %>
+      </div>
+  <% end %>
+</div>

@@ -7,26 +7,42 @@
           <%= label_tag(:name, "姓名:") %>
         </div>
         <%= text_field_tag(:name) %>
-
+        <% if @scores != nil %>
+            <% if @scores.errors[:name].any? %>
+                <dd>  <%= @scores.errors[:name][0] %></dd>
+            <% end %>
+        <% end %>
         <br>
 
         <div>
           <%= label_tag("学号:") %>
         </div>
         <%= text_field_tag(:user_id) %>
-
+        <% if @scores != nil %>
+            <% if @scores.errors[:user_id].any? %>
+                <dd>  <%= @scores.errors[:user_id][0] %></dd>
+            <% end %>
+        <% end %>
         <br>
 
         <div>
           <%= label_tag("身份证号:") %>
         </div>
         <%= text_field_tag(:card) %>
-
+        <% if @scores != nil %>
+            <% if @scores.errors[:card].any? %>
+                <dd>  <%= @scores.errors[:card][0] %></dd>
+            <% end %>
+        <% end %>
         <div>
           <%= label_tag("班级:") %>
         </div>
         <%= text_field_tag(:ban_ji) %>
-
+        <% if @scores != nil %>
+            <% if @scores.errors[:ban_ji].any? %>
+                <dd>  <%= @scores.errors[:ban_ji][0] %></dd>
+            <% end %>
+        <% end %>
         <br>
         <%= submit_tag("报名") %>
     <% end %>

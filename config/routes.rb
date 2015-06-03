@@ -19,7 +19,14 @@ Rails.application.routes.draw do
   post '/siji_all'=>'page#siji_all'
   post '/register_liuji'=>'page#register_liuji'
   post '/liuji_all'=>'page#liuji_all'
-  # get '/show'=>'page#show'
+  get '/siji_all'=>'page#siji_all'
+  get '/liuji_all'=>'page#liuji_all'
+   get '/show'=>'page#show'
+   get '/edit'=> 'page#edit'
+  post '/update'=> 'page#update'
+  get 'page/remove_user'
+  post '/add_excel'=>'page#add_excel'
+  get 'page/landing'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

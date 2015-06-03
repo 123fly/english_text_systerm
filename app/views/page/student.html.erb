@@ -1,11 +1,19 @@
-<div class="return">
+<div class="zhuxiao">
   <button onclick="returnLandingPage()">注销</button>
 </div>
 <div align="center">
-<div>
-  <button onclick="opensiji()">英语四级考试报名</button>
+  <div id="si">
+    <button onclick="opensiji()">英语四级考试报名</button>
+  </div>
+  <div id="si">
+    <button onclick="openliuji()">英语六级考试报名</button>
+  </div>
 </div>
- <div>
-   <button onclick="openliuji()">英语六级考试报名</button>
- </div>
+<div align="center">
+  <% if flash[:notice] %>
+      <div><%= flash[:notice] %></div>
+  <% end %>
+</div>
+<div align="center">
+  <p>报名须知：报考六级考试的前提是四级考试的成绩大于420分</p>
 </div>

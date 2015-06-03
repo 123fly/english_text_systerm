@@ -1,3 +1,9 @@
+<div class="return">
+  <button onclick="returnLandingPage()">返回登录</button>
+</div>
+<div align="center">
+  <h3>考试信息</h3>
+</div>
 <div>
   <% if @scores != nil %>
       <table>
@@ -20,7 +26,7 @@
               <td><%= @scores.test_class %></td>
               <td><%= @scores.test_number %></td>
               <td><%= @scores.zuo_hao %></td>
-              <td><%=  %></td>
+              <td> </td>
             </tr>
         <% end %>
       </table>
