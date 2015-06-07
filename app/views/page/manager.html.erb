@@ -12,6 +12,11 @@
 </div>
 <div>
   <div class="history">
+    <%= form_tag('/shen_he') do %>
+        <%= submit_tag('审核信息') %>
+    <% end %>
+  </div>
+  <div class="history">
     <%= form_tag('/siji_all') do %>
         <%= submit_tag('四级考试报名表') %>
     <% end %>
@@ -21,9 +26,12 @@
         <%= submit_tag('六级考试报名表') %>
     <% end %>
   </div>
+  <div class="history">
+   <button onclick="openadd_score()">成绩录入</button>
+  </div>
 </div>
 <br>
-<div>
+<div class="show">
   <% if @scores != nil %>
       <table>
 
@@ -34,10 +42,9 @@
               <td>班级：<%= score.ban_ji %></td>
               <td>身份证号：<%= score.card %></td>
               <td>考场：<%= score.test_class %></td>
-              <td>追考证号：<%= score.test_number %></td>
+              <td>准考证号：<%= score.test_number %></td>
               <td>座号：<%= score.zuo_hao %></td>
               <td>照片<%= %></td>
-              <td><%= link_to '修改', edit_path(score) %></td>
               <td><%=link_to '删除',page_remove_user_path(score.id)  %></td>
             </tr>
         <% end %>

@@ -1,10 +1,13 @@
+<div>
+
+</div>
 <div id="color">
 
-  <div align="center">
-    <h3>英语四级考试报名</h3>
+  <div class="siji" align="center">
+    <h1>英语四级考试报名</h1>
     <%= form_tag("/register_siji") do %>
 
-        <div>
+        <div class="text">
           <%= label_tag(:name, "姓名:") %>
         </div>
         <%= text_field_tag(:name) %>
@@ -15,7 +18,7 @@
         <% end %>
         <br>
 
-        <div>
+        <div class="text">
           <%= label_tag("学号:") %>
         </div>
         <%= text_field_tag(:user_id) %>
@@ -26,7 +29,7 @@
         <% end %>
         <br>
 
-        <div>
+        <div class="text">
           <%= label_tag("身份证号:") %>
         </div>
         <%= text_field_tag(:card) %>
@@ -35,7 +38,8 @@
                 <dd>  <%= @scores.errors[:card][0] %></dd>
             <% end %>
         <% end %>
-        <div>
+        <br>
+        <div class="text">
           <%= label_tag("班级:") %>
         </div>
         <%= text_field_tag(:ban_ji) %>
@@ -45,13 +49,18 @@
             <% end %>
         <% end %>
         <br>
+        <br>
+        <div class="bao">
         <%= submit_tag("报名") %>
+        </div>
+
     <% end %>
   </div>
+
   <div>
     <%= form_for :file, :url => '/add_excel' do |f| %>
         <%= f.file_field :file %>
-        <%= f.submit %>
+        <%= f.submit('上传') %>
     <% end %>
   </div>
 </div>

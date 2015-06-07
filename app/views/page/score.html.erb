@@ -1,0 +1,27 @@
+<div id="return">
+  <button onclick="returnManager()">返回</button><button onclick="returnLandingPage()">注销</button>
+</div>
+<div id="title" align="center">
+  <h1>报名信息审核</h1>
+</div>
+<div align="center">
+  <%= form_tag("/add_score") do %>
+
+      <%= label_tag(:name, "学号:") %>
+      <br>
+      <%= text_field_tag(:user_id) %>
+
+      <br>
+      <%= label_tag("分数:") %>
+      <br>
+      <%= text_field_tag(:fen_shu) %>
+
+      <br>
+
+      <br>
+
+
+      <br>
+      <%= submit_tag("确定") %>
+  <% end %>
+</div>

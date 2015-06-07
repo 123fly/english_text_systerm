@@ -1,0 +1,30 @@
+<div id="return">
+  <button onclick="returnManager()">返回</button>
+</div>
+<div align="center" id="title">
+  <h3>信息审核</h3>
+</div>
+<div class="show" align="center">
+  <% if flash[:zuohao] %>
+      <div><%= flash[:zuohao] %></div>
+  <% end %>
+  <% if @scores != nil %>
+      <table>
+        <% @scores.each do |score| %>
+            <tr>
+              <td>学号：<%= score.user_id %></td>
+              <td>姓名：<%= score.name %></td>
+              <td>班级：<%= score.ban_ji %></td>
+              <td>身份证号：<%= score.card %></td>
+              <td>级别：<%= score.number %></td>
+              <td><%= link_to '确定', page_he_path(score) %></td>
+            </tr>
+        <% end %>
+
+      </table>
+
+      <div align="center">
+        <%= will_paginate @scores, :previous_label => '上一页', :next_label => '下一页' %>
+      </div>
+  <% end %>
+</div>

@@ -2,9 +2,22 @@
   <button onclick="returnLandingPage()">返回登录</button>
 </div>
 <div align="center">
-  <h3>考试信息</h3>
+  <h1>考试信息</h1>
 </div>
-<div>
+<div align="center" class="chazhao">
+  <%= form_tag("/student_finding") do %>
+      <div id="manager">
+        <%= text_field_tag(:user_id) %>
+        <%= submit_tag("查找") %>
+        <br>
+        <%= radio_button_tag 'xuan_xiang', '报名信息查询' %> 报名信息查询
+        <%= radio_button_tag 'xuan_xiang', '成绩查询' %> 成绩查询
+
+      </div>
+  <% end %>
+
+</div>
+<div align="center">
   <% if @scores != nil %>
       <table>
         <tr>
@@ -17,18 +30,53 @@
           <th>座号</th>
           <th>照片</th>
         </tr>
-
-            <tr>
-              <td><%= @scores.user_id %></td>
-              <td><%= @scores.name %></td>
-              <td><%= @scores.ban_ji %></td>
-              <td><%= @scores.card %></td>
-              <td><%= @scores.test_class %></td>
-              <td><%= @scores.test_number %></td>
-              <td><%= @scores.zuo_hao %></td>
-              <td> </td>
-            </tr>
-        <% end %>
-      </table>
-
+        <tr>
+          <td><%= @scores.user_id %></td>
+          <td><%= @scores.name %></td>
+          <td><%= @scores.ban_ji %></td>
+          <td><%= @scores.card %></td>
+          <td><%= @scores.test_class %></td>
+          <td><%= @scores.test_number %></td>
+          <td><%= @scores.zuo_hao %></td>
+          <td></td>
+        </tr>
+  <% end %>
+  </table>
+</div>
+<div align="center">
+  <% if @score != nil %>
+      <table>
+        <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>考试成绩为</th>
+        </tr>
+        <tr>
+          <td><%= @score.user_id%></td>
+          <td><%= @score.name%></td>
+          <td><%= @score.fen_shu%></td>
+        </tr>
+  <% end %>
+  </table>
+</div>
+<div align="center">
+  <% if @xx != nil %>
+      <p>未审核</p>
+      <table>
+        <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>班级</th>
+          <th>身份证号</th>
+        </tr>
+        <tr>
+          <td><%= @xx.user_id %></td>
+          <td><%= @xx.name %></td>
+          <td><%= @xx.ban_ji %></td>
+          <td><%= @xx.card %></td>
+          <td><%=  image_tag (), :size => "50x50"%>
+          <td><%= link_to '修改',edit_path(@xx) %> </td>
+        </tr>
+  <% end %>
+  </table>
 </div>

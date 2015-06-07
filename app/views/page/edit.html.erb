@@ -6,26 +6,26 @@
     <div>
       <%= label_tag(:name, "姓名:") %>
     </div>
-    <%= text_field_tag(:name,Four.find_by_id(params[:format]).name) %>
+    <%= text_field_tag(:name,Information.find_by_id(params[:format]).name) %>
 
     <br>
 
     <div>
       <%= label_tag("学号:") %>
     </div>
-    <%= text_field_tag(:user_id,Four.find_by_id(params[:format]).user_id) %>
+    <%= text_field_tag(:user_id,Information.find_by_id(params[:format]).user_id) %>
 
     <br>
 
     <div>
       <%= label_tag("身份证号:") %>
     </div>
-    <%= text_field_tag(:card,Four.find_by_id(params[:format]).card) %>
+    <%= text_field_tag(:card,Information.find_by_id(params[:format]).card) %>
 
     <div>
       <%= label_tag("班级:") %>
     </div>
-    <%= text_field_tag(:ban_ji,Four.find_by_id(params[:format]).ban_ji  ) %>
+    <%= text_field_tag(:ban_ji,Information.find_by_id(params[:format]).ban_ji  ) %>
 
     <br>
     <%= submit_tag("修改") %>

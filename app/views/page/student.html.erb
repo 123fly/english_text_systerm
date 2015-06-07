@@ -1,6 +1,7 @@
 <div class="zhuxiao">
   <button onclick="returnLandingPage()">注销</button>
 </div>
+
 <div align="center">
   <div id="si">
     <button onclick="opensiji()">英语四级考试报名</button>
@@ -8,10 +9,13 @@
   <div id="si">
     <button onclick="openliuji()">英语六级考试报名</button>
   </div>
+  <div id="si">
+    <button onclick="openshow()">考试信息、成绩查询</button>
+  </div>
 </div>
-<div align="center">
-  <% if flash[:notice] %>
-      <div><%= flash[:notice] %></div>
+<div align="center" class="flash">
+  <% if flash[:siji] %>
+      <div><%= flash[:siji] %></div>
   <% end %>
 </div>
 <div align="center">

@@ -42,29 +42,12 @@ class PageController < ApplicationController
   end
 
   def register_siji
-
-    @scores = Four.new(siji_params)
-    zuo_hao = rand(30)
-    if zuo_hao = 0
-      zuo_hao = rand(30)
-    else
-      if zuo_hao < 10
-        zuo_hao = '0'+zuo_hao
-      end
-    end
-    test_class = '01'
-    if Four.find_by_number(4).zuo_hao.length>30
-      test_class = test_class+(Four.find_by_number(4).zuo_hao.length/30).round
-    else
-      test_class = '01'
-    end
-    @scores.zuo_hao = zuo_hao
-    @scores.test_class = test_class
-    @scores.number= '4'
-    @scores.test_number = @scores.user_id+@scores.test_class+@scores.zuo_hao
+    @scores = Information.new(siji_params)
+    @scores.number = 4
+    # @scores.photo =
     if @scores.save
-      @scores = Four.find_by_user_id(params[:user_id])
-      render "show"
+      flash[:siji]='报名成功'
+      render "student"
     else
       render 'siji'
     end
@@ -79,36 +62,19 @@ class PageController < ApplicationController
   end
 
   def register_liuji
-    @scores = Four.new(siji_params)
-    zuo_hao = rand(30)
-    if zuo_hao = 0
-      zuo_hao = rand(30)
-    else
-      if zuo_hao < 10
-        zuo_hao = '0'+zuo_hao
-      end
-    end
-    test_class = '01'
-    if Four.find_by_number(6).zuo_hao.length>30
-      test_class = test_class+(Four.find_by_number(6).zuo_hao.length/30).round
-    else
-      test_class = '01'
-    end
-    @scores.test_class = test_class
-    @scores.zuo_hao = zuo_hao
-    @scores.number = '6'
-    @scores.test_number = @scores.user_id+@scores.test_class+@scores.zuo_hao
+    @scores = Information.new(siji_params)
+    @scores.number = 6
     if Score.find_by_user_id(params[:user_id]).fen_shu > '420'
 
       if @scores.save
-        @scores = Four.find_by_user_id(params[:user_id])
-        render "show"
+        flash[:siji]='报名成功'
+        render "student"
       else
         render 'liuji'
       end
 
     else
-      flash[:notice]="请参加四级考试"
+      flash[:siji]="请参加四级考试"
       render 'student'
     end
   end
@@ -145,10 +111,10 @@ class PageController < ApplicationController
   end
 
   def update
-    @score = Four.find_by_id(params[:id])
-
-    if @score.update(scores_params)
-      render 'manager'
+    @xx = Information.find_by_id(params[:id])
+    if @xx.update(scores_params)
+      flash[:siji]='修改成功'
+      render 'student'
     else
       render 'edit'
     end
@@ -162,9 +128,10 @@ class PageController < ApplicationController
     Four.delete(['id=?', params[:format]])
     render 'manager'
   end
+
   def add_excel
     file_upload(params[:file])
-    render 'siji'
+    render 'siji' ,:photo =>dir_path.to_json
 
   end
 
@@ -188,6 +155,74 @@ class PageController < ApplicationController
     end
     store_path = "/images/embarrass/#{Time.now.strftime('%Y%m')}/#{file_rename}"
     return store_path
+  end
+
+  def shen_he
+    @scores = Information.paginate :page => params[:page], :per_page => 3
+    render 'shen_he'
+  end
+
+  def he
+    @xin_xi = Four.new
+    @score = Information.find_by_id(params[:format])
+    @xin_xi.name = @score.name
+    @xin_xi.user_id = @score.user_id
+    @xin_xi.card = @score.card
+    @xin_xi.ban_ji = @score.ban_ji
+    @xin_xi.number = @score.number
+    zuohao = rand(30)
+    if zuohao == 0
+      zuohao = rand(30)
+    end
+    test_class = 1
+    length = Four.where('number=?', @score.number).length
+    if length > 30
+      test_class = test_class +(length/30).round
+    else
+      test_class = 1
+    end
+    @xin_xi.zuo_hao = zuohao
+    @xin_xi.test_class = test_class
+    if test_class < 10
+      @xin_xi.test_class= '0'+@xin_xi.test_class
+    end
+    if @xin_xi.zuo_hao.length < 2
+      @xin_xi.zuo_hao = '0'+@xin_xi.zuo_hao
+    end
+    @xin_xi.test_number = @xin_xi.user_id+@xin_xi.test_class+@xin_xi.zuo_hao
+    if @xin_xi.save
+      Information.delete_all(['id=?', params[:format]])
+      render 'manager'
+    else
+      flash[:zuohao]= '座号错误'
+     @scores = Information.paginate :page => params[:page], :per_page => 3
+      render 'shen_he'
+    end
+  end
+
+  def student_finding
+    if params[:xuan_xiang]=='成绩查询'
+      @score = Score.find_by_user_id(params[:user_id])
+    else
+      if Information.find_by_user_id(params[:user_id])== nil
+        @scores = Four.find_by_user_id(params[:user_id])
+      else
+        @xx = Information.find_by_user_id(params[:user_id])
+      end
+    end
+    render 'show'
+  end
+
+  def add_score
+    @score = Score.new
+    @score.user_id = params[:user_id]
+    @score.fen_shu = params[:fen_shu]
+    @score.name = Four.find_by_user_id(params[:user_id]).name
+    if @score.save
+      render 'score'
+    else
+      render 'score'
+    end
   end
 
 end

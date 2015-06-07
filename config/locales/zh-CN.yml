@@ -38,10 +38,10 @@ zh-CN:
             blank: '不能为空'
             taken:  '已注册'
 
-  activerecord:
+   activerecord:
      errors:
        models:
-         four:
+         information:
           attributes:
             name:
               blank: "不能为空"
